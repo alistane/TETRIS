@@ -1,6 +1,9 @@
+
+#ifndef GAMEMANAGER
 #include<iostream>
 #include "Obstacle.h"
 #include "Grid.h"
+#include "raylib.h"
 
 class GameManager
 {
@@ -10,6 +13,9 @@ class GameManager
     
     public:
         void Draw();
-
+        void Dropping();
+        bool approve(); // this will send a signal that the current object has been placed successfully.
+        void check_placement();
 
 };
+#endif
