@@ -1,6 +1,8 @@
 #ifndef OBSTACLE
 #include <iostream>
 #include <raylib.h>
+#include <vector>
+
 class OBSTACLE
 {
 
@@ -16,5 +18,18 @@ class OBSTACLE
     void drop_obstacle();
     void movement();
     bool get_placementState(); // this will tell whether the obstacle has been placed.
+    
+    std::vector<std::vector<float>> give_position(); // returns the current position of the object
+    // tells which row we are at.
+    int getBlock1PosX();        
+    int getBlock2PosX();
+    int getBlock3PosX();
+    int getBlock4PosX();
+
+    int getBlock1PosY(); // tells which column we are at.
+    int getBlock2PosY();
+    int getBlock3PosY();
+    int getBlock4PosY();
+
 };
 #endif

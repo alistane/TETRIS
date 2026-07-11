@@ -3,7 +3,6 @@
 #include <chrono>
 #include <algorithm>
 
-
 OBSTACLE::OBSTACLE(int posX1, int posX2, int posX3, int posX4, 
 int posY1, int posY2, int posY3, int posY4, int width, int height) 
 {
@@ -33,6 +32,23 @@ void OBSTACLE::set_color(Color color)
 {
     this->blocks_color = color;
 }
+
+std::vector<std::vector<float>> OBSTACLE::give_position()
+{
+    std::vector<std::vector<float>> pos_matrix (4, std::vector<float>(2, 0));
+    
+    pos_matrix = {
+        {block1.x, block1.y},
+        {block2.x, block2.y},
+        {block3.x, block3.y},
+        {block4.x, block4.y}
+    };
+    
+
+    return pos_matrix;
+
+}
+
 
 void OBSTACLE::draw_obstacle(Color col)
 {
@@ -99,8 +115,6 @@ void OBSTACLE::movement()
         {
             this->isPlaced = true;
         }
-    
-
     }
 
 }
@@ -108,4 +122,39 @@ void OBSTACLE::movement()
 bool OBSTACLE::get_placementState()
 {
     return this->isPlaced;
+}
+
+
+int OBSTACLE::getBlock1PosX()
+{
+    return this->block1.x;
+}        
+int OBSTACLE::getBlock2PosX()
+{
+    return this->block2.x;
+}
+int OBSTACLE::getBlock3PosX()
+{
+    return this->block3.x;
+}
+int OBSTACLE::getBlock4PosX()
+{
+    return this->block4.x;
+}
+
+int OBSTACLE::getBlock1PosY()
+{
+    return this->block1.y;
+}
+int OBSTACLE::getBlock2PosY()
+{
+    return this->block2.y;
+}
+int OBSTACLE::getBlock3PosY()
+{
+    return this->block3.y;
+}
+int OBSTACLE::getBlock4PosY()
+{
+    return this->block4.y;
 }

@@ -1,89 +1,60 @@
 #include "Grid.h"
 
+
+GRID::GRID()
+{
+    
+
+}
+
+
 void GRID::draw_grid()
 {
-    DrawRectangleLinesEx(this->r1c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r1c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r1c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r1c4_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r1c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r1c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r1c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r1c8_rec,1.5, DARKPURPLE);
-
-
-    DrawRectangleLinesEx(this->r2c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r2c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r2c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r2c4_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r2c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r2c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r2c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r2c8_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r3c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r3c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r3c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r3c4_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r3c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r3c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r3c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r3c8_rec,1.5, DARKPURPLE);
     
-    DrawRectangleLinesEx(this->r4c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r4c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r4c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r4c4_rec,1.5, DARKPURPLE);
+    int addx = 50; // starting point of our c1
+    int addy = 510;// starting point of our r1
+    
+    for(int i = 0; i < 8; i++)
+    {
+        // we are adding x wagera
+        for(int j = 0; j < 8; j++)
+        {
+            this->visual_recs[i][j].x = addx;
+            this->visual_recs[i][j].height = 40;
+            this->visual_recs[i][j].width = 40;
+            this->visual_recs[i][j].y = addy;
+            DrawRectangleLinesEx(this->visual_recs[i][j], 1.5, DARKPURPLE);
+            addx+=40;
+        }
+        addx = 50;
+        addy-= 40;
 
-    DrawRectangleLinesEx(this->r4c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r4c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r4c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r4c8_rec,1.5, DARKPURPLE);
+    }
 
-    DrawRectangleLinesEx(this->r5c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r5c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r5c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r5c4_rec,1.5, DARKPURPLE);
+}
 
-    DrawRectangleLinesEx(this->r5c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r5c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r5c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r5c8_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r6c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r6c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r6c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r6c4_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r6c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r6c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r6c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r6c8_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r7c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r7c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r7c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r7c4_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r7c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r7c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r7c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r7c8_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r8c1_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r8c2_rec, 1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r8c3_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r8c4_rec,1.5, DARKPURPLE);
-
-    DrawRectangleLinesEx(this->r8c5_rec,1.5, DARKPURPLE);
-    DrawRectangleLinesEx(this->r8c6_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r8c7_rec, 1.5,DARKPURPLE);
-    DrawRectangleLinesEx(this->r8c8_rec,1.5, DARKPURPLE);
+int GRID::getRowPosition(int row)
+{
+    return this->visual_recs[row][0].y;
+}
 
 
+int GRID::getColumnPosition(int column)
+{
+    return this->visual_recs[0][column].x;
+}
 
 
+void GRID::setCell(int row, int column, int value)
+{
+    if(value >= 0 && value <= 1)
+        this->grid_logic[row][column] = value;
+    else
+        std::cout << "Invalid value cannot be assigned.." << std::endl;
+}
+
+
+int GRID::getValue(int row, int column)
+{
+    return this->grid_logic[row][column];
 }

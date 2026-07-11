@@ -9,12 +9,12 @@ class GameManager
 {
     private:
         GRID g1;
-        OBSTACLE ob1 {50,90,50,90,150,150,110,110,40,40};
+        OBSTACLE ob1 {50,90,130,170,150,150,150,150,40,40};
     
     public:
         void Draw();
         void Dropping();
-        bool approve(); // this will send a signal that the current object has been placed successfully.
+        bool approve(); // this will send a signal that the current object has been placed successfully. TRUE -> Placed , FALSE -> STILL DROPPING
         void check_placement();
 
 };
