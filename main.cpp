@@ -5,15 +5,11 @@
 int main()
 {
 
-    const int screenWidth = 800;
-    const int screenHeight = 600;
+    const int screenWidth = 1920;
+    const int screenHeight = 1080;
     InitWindow(screenWidth, screenHeight, "Tetris");
     
-if (!IsWindowReady())
-{
-    std::cout << "Window failed to initialize\n";
-    return 1;
-}
+    
     SetTargetFPS(60);
 
     
@@ -22,13 +18,16 @@ if (!IsWindowReady())
     Music bgm = LoadMusicStream("Tetris Main Song.wav");
     PlayMusicStream(bgm);
 
-
+    // Color background = {18, 18, 18, 255};
+    Color background = {15, 23, 42, 255};
     double last = GetTime();
     GameManager g1;
+
     while(!WindowShouldClose())
     {
+
         UpdateMusicStream(bgm);
-        if(GetTime() - last >= 1.0f && !g1.approve())
+        if(GetTime() - last >= 1.0f)
         {
             g1.Dropping();
             
@@ -41,8 +40,10 @@ if (!IsWindowReady())
         }
   
       BeginDrawing();
-      ClearBackground(BLUE);
+      ClearBackground(background);
+
       g1.Draw();  
+      g1.spawn();
       EndDrawing();
 
     }

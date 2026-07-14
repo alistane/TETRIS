@@ -23,7 +23,7 @@ void GRID::draw_grid()
             this->visual_recs[i][j].height = 40;
             this->visual_recs[i][j].width = 40;
             this->visual_recs[i][j].y = addy;
-            DrawRectangleLinesEx(this->visual_recs[i][j], 1.5, DARKPURPLE);
+            DrawRectangleLinesEx(this->visual_recs[i][j], 1.5, {45,45,45,255});
             addx+=40;
         }
         addx = 50;

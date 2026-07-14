@@ -3,16 +3,26 @@
 
 void GameManager::Dropping()
 {
-    ob1.drop_obstacle();
+    this->obstacles[this->current_index].drop_obstacle();
 
 }
 
 
 void GameManager::Draw()
 {
+
     this->g1.draw_grid();
-    this->ob1.draw_obstacle(ORANGE);
-    this->ob1.movement();
+    for(int i = 0; i <= this->current_index ; i++)
+    {
+        
+        this->obstacles[i].draw_obstacle(this->obstacle_colors[i]);
+
+    }
+    this->obstacles[this->current_index].movement();
+    DrawTextEx(this->score_font, TextFormat("Score : %d" , this->score), score_txt_loc , 30, 2, WHITE);
+
+    // this->ob1.draw_obstacle(ORANGE);
+    // this->ob1.movement();
 
 }
 
@@ -141,5 +151,43 @@ void GameManager::check_placement()
 
     
 
+
+}
+
+GameManager::GameManager()
+{
+    this->initialise_obstacles();
+    this->score_font = LoadFont("UI FONT 1.TTF");
+    this->obstacle_colors.push_back(ORANGE);
+    this->obstacle_colors.push_back(RED);
+    this->obstacle_colors.push_back(GREEN);
+    this->obstacle_colors.push_back(YELLOW);
+    this->obstacle_colors.push_back(PURPLE);
+
+
+}
+
+void GameManager::initialise_obstacles()
+{
+    this->obstacles.push_back(OBSTACLE (50,90,130,170,150,150,150,150,40,40));
+    this->obstacles.push_back(OBSTACLE (50,50,50,50,150,190,230,270,40,40)); // i shape
+    this->obstacles.push_back(OBSTACLE (50,90,130,90,150,150,150,190,40,40)); // T shape
+    this->obstacles.push_back(OBSTACLE (50,90,50,90,150,150,190,190,40,40)); // o shape
+    this->obstacles.push_back(OBSTACLE (50,90,90,130,190,150,190,150,40,40)); // s shape
+
+}
+
+void GameManager::spawn( )
+{
+    std::cout << obstacles.size() << std::endl;
+
+    if(this->current_index < this->spawn_limit - 1)
+    {
+        if(this->obstacles[this->current_index].get_placementState())
+        {
+            this->current_index++;
+        }
+    }
+    
 
 }
