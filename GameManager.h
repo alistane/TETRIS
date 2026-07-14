@@ -11,8 +11,8 @@ class GameManager
 {
     private:
         GRID g1;
-        OBSTACLE ob1 {50,90,130,170,150,150,150,150,40,40};
-        OBSTACLE ob2 {50,90,130,170,150,150,150,150,40,40};
+        // OBSTACLE ob1 {50,90,130,170,150,150,150,150,40,40};
+        // OBSTACLE ob2 {50,90,130,170,150,150,150,150,40,40};
         std::vector<OBSTACLE> obstacles; // bank for obstacles.
         OBSTACLE current_obstacle; // obstacle that is selected for dropping.
         int current_index = {}; // index (tells current obstacle) ,, is managed in spawn function.

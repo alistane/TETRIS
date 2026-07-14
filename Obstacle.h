@@ -10,9 +10,10 @@ class OBSTACLE
         Rectangle block1, block2, block3, block4; // 4 blocks
         Color blocks_color;
         bool isPlaced = false;
+        std::string obj_name;
     public:
         OBSTACLE() = default;
-        OBSTACLE(int posX1, int posX2, int posX3, int posX4, 
+        OBSTACLE(std::string obj_name,int posX1, int posX2, int posX3, int posX4, 
                 int posY1, int posY2, int posY3, int posY4, int width, int height);
     void draw_obstacle(Color color);        
     void set_color(Color color);
@@ -31,6 +32,8 @@ class OBSTACLE
     int getBlock2PosY();
     int getBlock3PosY();
     int getBlock4PosY();
+
+    std::string give_name(); // gives the name of the object
 
 };
 #endif

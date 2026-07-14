@@ -23,27 +23,31 @@ int main()
     double last = GetTime();
     GameManager g1;
 
+
+
     while(!WindowShouldClose())
     {
 
         UpdateMusicStream(bgm);
-        if(GetTime() - last >= 1.0f)
+        if(GetTime() - last >= 1.0f && !g1.approve())
         {
             g1.Dropping();
             
             last = GetTime();
         }
-        else if(g1.approve())
-        {
-            g1.check_placement();
 
-        }
+        
   
       BeginDrawing();
       ClearBackground(background);
 
       g1.Draw();  
-      g1.spawn();
+    //   g1.spawn();
+      if(g1.approve())
+      {
+        g1.check_placement();
+        g1.spawn();
+      }
       EndDrawing();
 
     }

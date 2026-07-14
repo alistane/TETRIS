@@ -3,9 +3,10 @@
 #include <chrono>
 #include <algorithm>
 
-OBSTACLE::OBSTACLE(int posX1, int posX2, int posX3, int posX4, 
+OBSTACLE::OBSTACLE(std::string obj_name, int posX1, int posX2, int posX3, int posX4, 
 int posY1, int posY2, int posY3, int posY4, int width, int height) 
 {
+    this->obj_name = obj_name;
     this->block1.x = posX1;
     this->block1.height = height;
     this->block1.y = posY1;
@@ -27,6 +28,13 @@ int posY1, int posY2, int posY3, int posY4, int width, int height)
     this->block4.width = width;
 
 }
+
+
+std::string OBSTACLE::give_name()
+{
+    return this->obj_name;
+}
+
 
 void OBSTACLE::set_color(Color color)
 {

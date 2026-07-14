@@ -28,7 +28,8 @@ void GameManager::Draw()
 
 bool GameManager::approve()
 {
-    return this->ob1.get_placementState();
+    return this->obstacles[this->current_index].get_placementState();
+    // return this->ob1.get_placementState();
 }
 
 
@@ -38,13 +39,13 @@ void GameManager::check_placement()
 
     std::vector<std::vector<float>>  final_placement;
    
-    final_placement = this->ob1.give_position();
+    final_placement = this->obstacles[this->current_index].give_position();
 
     // now we will run a for loop and ask the grid to give us coordinates of visual rects and if the position of object blocks is equal to visual rect, then we will turn grid_logic variable grid cells equal to 1.
 
 
     // COMMENT THIS CODE IN THE FINAL VERSION
-    std::cout << "Object placed at the following coordinates : " << std::endl;
+    std::cout << this->obstacles[this->current_index].give_name() << " placed at the following coordinates : " << std::endl;
 
     for(int i = 0; i < 4; i++) // i represents blocks
     {
@@ -120,10 +121,8 @@ void GameManager::check_placement()
             // firstly, checking the rows of the final placement of the object.
             if(this->g1.getRowPosition(i) == final_placement[j][1])
             {
-                std::cout << "In ROW : " << i << "\n" << "Now checking for columns";
                 for(int k = 0; k < 8; k++) // where k -> columns of grid
                 {
-
                     // TODO : Do something about this l loop, this is not necessary to compare y positions of the object again and again.
                     for(int l = 0; l < 2; l++) // where l -> y (column) of final obj placement 
                     {
@@ -169,17 +168,16 @@ GameManager::GameManager()
 
 void GameManager::initialise_obstacles()
 {
-    this->obstacles.push_back(OBSTACLE (50,90,130,170,150,150,150,150,40,40));
-    this->obstacles.push_back(OBSTACLE (50,50,50,50,150,190,230,270,40,40)); // i shape
-    this->obstacles.push_back(OBSTACLE (50,90,130,90,150,150,150,190,40,40)); // T shape
-    this->obstacles.push_back(OBSTACLE (50,90,50,90,150,150,190,190,40,40)); // o shape
-    this->obstacles.push_back(OBSTACLE (50,90,90,130,190,150,190,150,40,40)); // s shape
+    this->obstacles.push_back(OBSTACLE ("IDK",50,90,130,170,150,150,150,150,40,40));
+    this->obstacles.push_back(OBSTACLE ("I shape", 50,50,50,50,150,190,230,270,40,40)); // i shape
+    this->obstacles.push_back(OBSTACLE ("T shape", 50,90,130,90,150,150,150,190,40,40)); // T shape
+    this->obstacles.push_back(OBSTACLE ("O shape", 50,90,50,90,150,150,190,190,40,40)); // o shape
+    this->obstacles.push_back(OBSTACLE ("S shape", 50,90,90,130,190,150,190,150,40,40)); // s shape
 
 }
 
 void GameManager::spawn( )
 {
-    std::cout << obstacles.size() << std::endl;
 
     if(this->current_index < this->spawn_limit - 1)
     {
