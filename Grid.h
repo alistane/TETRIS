@@ -20,12 +20,13 @@ class GRID
 
         int getRowPosition(int row);
         int getColumnPosition(int column);
-        int getValue(int row, int column);
+        int getValue(int row, int column); // gives the value of specific cell , 0 for empty and 1 for filled.
 
         // sets the individual blocks in the grid to filled or empty, 0 means empty , 1 means filled.
         void setCell(int row, int column, int value);
 
-
+        int get_no_of_rows();
+        int get_no_of_columns();
 
 };
 #endif

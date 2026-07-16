@@ -30,5 +30,7 @@ class GameManager
         bool approve(); // this will send a signal that the current object has been placed successfully. TRUE -> Placed , FALSE -> STILL DROPPING
         void check_placement();
 
+        void check_filledrows(); // checks every row and if it is filled then it will reward the user and it will reset rows and column cells back to 0 and delete the blocks there.
+
 };
 #endif

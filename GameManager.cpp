@@ -33,6 +33,38 @@ bool GameManager::approve()
 }
 
 
+void GameManager::check_filledrows()
+{
+    for(int i = 0; i < this->g1.get_no_of_rows(); i++)
+    {
+        int counter = {};
+        int filled_row = {};
+        for(int j = 0; j < this->g1.get_no_of_columns(); j++)
+        {
+            if(g1.getValue(i,j) == 1)
+            {
+                counter++;
+            }
+            if(counter == 10)
+            {
+                filled_row = i;
+                std::cout << filled_row << " Row is filled now" << std::endl;
+                this->score += 100;
+                
+                for(int columns = 0; columns < this->g1.get_no_of_columns(); columns++)
+                {
+                    this->g1.setCell(filled_row, columns, 0);
+                }
+            }
+
+        }
+        
+        // now resetting the state might want to look here in the future for optimisation.. this loop maybe try putting it in the if condition counter==10.
+
+        
+    }
+}
+
 void GameManager::check_placement()
 {
     
@@ -169,6 +201,7 @@ GameManager::GameManager()
 
 void GameManager::initialise_obstacles()
 {
+    // 710 say 740, 780, 820
     this->obstacles.push_back(OBSTACLE ("IDK",50,90,130,170,150,150,150,150,40,40));
     this->obstacles.push_back(OBSTACLE ("I shape", 50,50,50,50,150,190,230,270,40,40)); // i shape
     this->obstacles.push_back(OBSTACLE ("T shape", 50,90,130,90,150,150,150,190,40,40)); // T shape

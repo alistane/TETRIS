@@ -54,7 +54,18 @@ void GRID::setCell(int row, int column, int value)
 }
 
 
-int GRID::getValue(int row, int column)
+int GRID::getValue(int row, int column) 
 {
     return this->grid_logic[row][column];
+}
+
+
+int GRID::get_no_of_rows()
+{
+    return this->rows;
+}
+
+int GRID::get_no_of_columns()
+{
+    return this->columns;
 }

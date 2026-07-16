@@ -37,7 +37,6 @@ int main()
         }
 
         
-  
       BeginDrawing();
       ClearBackground(background);
 
@@ -49,6 +48,7 @@ int main()
         g1.spawn();
       }
       EndDrawing();
+      g1.check_filledrows();
 
     }
 
