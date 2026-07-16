@@ -20,7 +20,7 @@ class GameManager
         Font score_font;
         Vector2 score_txt_loc {450, 200};
         std::vector<Color> obstacle_colors;
-        int spawn_limit = 5;
+        int spawn_limit = 6;
     public:
         GameManager();
         void initialise_obstacles();

@@ -126,7 +126,7 @@ void OBSTACLE::drop_obstacle()
         int lowest = std::max({this->block1.y, this->block2.y, this->block3.y, this->block4.y});
 
 
-        if(lowest < 510)
+        if(lowest < 990)
         {
             this->block1.y += 40;
             this->block2.y += 40;
@@ -170,7 +170,7 @@ void OBSTACLE::movement()
         }
         else if(IsKeyPressed(KEY_D))
         {
-            if(block1.x < 330 && block2.x < 330  && block3.x < 330 && block4.x < 330)
+            if(block1.x < 810 && block2.x < 810  && block3.x < 810 && block4.x < 810)
             {
                 this->block1.x += 40;
                 this->block2.x += 40;

@@ -114,14 +114,14 @@ void GameManager::check_placement()
 
 
 
-    for(int i = 0 ; i < 8 ; i++) // where i -> rows of grid
+    for(int i = 0 ; i < 20 ; i++) // where i -> rows of grid
     {
         for(int j = 0; j <= 3; j++) // where j ->  block 1, 2, 3, 4
         {
             // firstly, checking the rows of the final placement of the object.
             if(this->g1.getRowPosition(i) == final_placement[j][1])
             {
-                for(int k = 0; k < 8; k++) // where k -> columns of grid
+                for(int k = 0; k < 10; k++) // where k -> columns of grid
                 {
                     // TODO : Do something about this l loop, this is not necessary to compare y positions of the object again and again.
                     for(int l = 0; l < 2; l++) // where l -> y (column) of final obj placement 
@@ -139,11 +139,11 @@ void GameManager::check_placement()
     }
 
     // now checking the values ..
-    for(int i = 0 ; i < 8 ; i++)
+    for(int i = 0 ; i < 20 ; i++)
     {
-        for(int j = 0 ; j < 8 ; j++)
+        for(int j = 0 ; j < 10 ; j++)
         {
-            std::cout << "Row " << i << "\n" << "Column : " << j << "\n" 
+            std::cout << "Row " << i+1 << "\n" << "Column : " << j+1 << "\n" 
             << "Value : " << this->g1.getValue(i, j) << std::endl;
         }
     }
@@ -162,6 +162,7 @@ GameManager::GameManager()
     this->obstacle_colors.push_back(GREEN);
     this->obstacle_colors.push_back(YELLOW);
     this->obstacle_colors.push_back(PURPLE);
+    this->obstacle_colors.push_back(BLUE);
 
 
 }
@@ -173,7 +174,7 @@ void GameManager::initialise_obstacles()
     this->obstacles.push_back(OBSTACLE ("T shape", 50,90,130,90,150,150,150,190,40,40)); // T shape
     this->obstacles.push_back(OBSTACLE ("O shape", 50,90,50,90,150,150,190,190,40,40)); // o shape
     this->obstacles.push_back(OBSTACLE ("S shape", 50,90,90,130,190,150,190,150,40,40)); // s shape
-
+    this->obstacles.push_back(OBSTACLE ("L shape", 50,50,50,90,150,190,230,230,40,40));
 }
 
 void GameManager::spawn( )

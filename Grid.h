@@ -6,11 +6,11 @@ class GRID
     private:
         // these int variables will indicate whether they are filled or not. 0 for empty and 1 for filled.
         
-        const int rows = 10, columns = 20;
-        int grid_logic[8][8] = {};
+        const int rows = 20, columns = 10;
+        int grid_logic[20][10] = {};
 
         
-        Rectangle visual_recs[8][8] = {};
+        Rectangle visual_recs[20][10] = {};
 
 
     public:

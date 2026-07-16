@@ -12,12 +12,12 @@ void GRID::draw_grid()
 {
     
     int addx = 50; // starting point of our c1
-    int addy = 510;// starting point of our r1
+    int addy = 990;// starting point of our r1
     
-    for(int i = 0; i < 8; i++)
+    for(int i = 0; i < this->rows; i++)
     {
         // we are adding x wagera
-        for(int j = 0; j < 8; j++)
+        for(int j = 0; j < this->columns; j++)
         {
             this->visual_recs[i][j].x = addx;
             this->visual_recs[i][j].height = 40;
