@@ -61,59 +61,75 @@ std::vector<std::vector<float>> OBSTACLE::give_position()
 void OBSTACLE::draw_obstacle(Color col)
 {
     this->set_color(col);
-    DrawRectangleRec(this->block1, this->blocks_color);
-    // DrawRectangleLinesEx(this->block1, 1, BLACK);
-    DrawLine(this->block1.x, this->block1.y,  this->block1.x + this->block1.width, this->block1.y, WHITE); // top
 
-    // left
-    DrawLine(this->block1.x, this->block1.y,  this->block1.x, this->block1.y + this->block1.height, WHITE);
+    if(this->block1_active)
+    {
+        DrawRectangleRec(this->block1, this->blocks_color);
+        // DrawRectangleLinesEx(this->block1, 1, BLACK);
+        DrawLine(this->block1.x, this->block1.y,  this->block1.x + this->block1.width, this->block1.y, WHITE); // top
 
-    // bottom
-    DrawLine(this->block1.x, this->block1.y + this->block1.height,  this->block1.x + this->block1.width, this->block1.y + this->block1.height, DARKBROWN);
+        // left
+        DrawLine(this->block1.x, this->block1.y,  this->block1.x, this->block1.y + this->block1.height,     WHITE);
 
-    // right
-    DrawLine(this->block1.x + this->block1.width , this->block1.y , this->block1.x + this->block1.width, this->block1.y + this->block1.height, DARKBROWN);
+        // bottom
+        DrawLine(this->block1.x, this->block1.y + this->block1.height,  this->block1.x + this->block1.  width, this->block1.y + this->block1.height, DARKBROWN);
 
-    // block 2
-    DrawRectangleRec(this->block2, this->blocks_color);
+        // right
+        DrawLine(this->block1.x + this->block1.width , this->block1.y , this->block1.x + this->block1.  width, this->block1.y + this->block1.height, DARKBROWN);
 
-    DrawLine(this->block2.x, this->block2.y,  this->block2.x + this->block2.width, this->block2.y, WHITE); // top
+    }
 
-    // left
-    DrawLine(this->block2.x, this->block2.y,  this->block2.x, this->block2.y + this->block2.height, WHITE);
+    if(this->block2_active)
+    {
+        // block 2
+        DrawRectangleRec(this->block2, this->blocks_color);
 
-    // bottom
-    DrawLine(this->block2.x, this->block2.y + this->block2.height,  this->block2.x + this->block2.width, this->block2.y + this->block2.height, DARKBROWN);
+        DrawLine(this->block2.x, this->block2.y,  this->block2.x + this->block2.width, this->block2.y, WHITE); // top
 
-    // right
-    DrawLine(this->block2.x + this->block2.width , this->block2.y , this->block2.x + this->block2.width, this->block2.y + this->block2.height, DARKBROWN);
+        // left
+        DrawLine(this->block2.x, this->block2.y,  this->block2.x, this->block2.y + this->block2.height, WHITE);
 
+        // bottom
+        DrawLine(this->block2.x, this->block2.y + this->block2.height,  this->block2.x + this->block2.  width, this->block2.y + this->block2.height, DARKBROWN);
 
-    // block 3
-    DrawRectangleRec(this->block3, this->blocks_color);
+        // right
+        DrawLine(this->block2.x + this->block2.width , this->block2.y , this->block2.x + this->block2.width, this->block2.y + this->block2.height, DARKBROWN);
+    }
+    
+    
+    if(this->block3_active)
+    {
+        // block 3
+        DrawRectangleRec(this->block3, this->blocks_color);
         DrawLine(this->block3.x, this->block3.y,  this->block3.x + this->block3.width, this->block3.y, WHITE); // top
 
-    // left
-    DrawLine(this->block3.x, this->block3.y,  this->block3.x, this->block3.y + this->block3.height, WHITE);
+        // left
+        DrawLine(this->block3.x, this->block3.y,  this->block3.x, this->block3.y + this->block3.height, WHITE);
 
-    // bottom
-    DrawLine(this->block3.x, this->block3.y + this->block3.height,  this->block3.x + this->block3.width, this->block2.y + this->block3.height, DARKBROWN);
+        // bottom
+        DrawLine(this->block3.x, this->block3.y + this->block3.height,  this->block3.x + this->block3.width, this->block2.y + this->block3.height, DARKBROWN);
 
-    // right
-    DrawLine(this->block3.x + this->block3.width , this->block3.y , this->block3.x + this->block3.width, this->block3.y + this->block3.height, DARKBROWN);
+        // right
+        DrawLine(this->block3.x + this->block3.width , this->block3.y , this->block3.x + this->block3.width, this->block3.y + this->block3.height, DARKBROWN);
+    }
 
-    // block 4
-    DrawRectangleRec(this->block4, this->blocks_color);
-    DrawLine(this->block4.x, this->block4.y,  this->block4.x + this->block4.width, this->block4.y, WHITE); // top
+    
+    if(this->block4_active)
+    {
+        // block 4
+        DrawRectangleRec(this->block4, this->blocks_color);
+        DrawLine(this->block4.x, this->block4.y,  this->block4.x + this->block4.width, this->block4.y, WHITE); // top
 
-    // left
-    DrawLine(this->block4.x, this->block4.y,  this->block4.x, this->block4.y + this->block4.height, WHITE);
+        // left
+        DrawLine(this->block4.x, this->block4.y,  this->block4.x, this->block4.y + this->block4.height, WHITE);
 
-    // bottom
-    DrawLine(this->block4.x, this->block4.y + this->block4.height,  this->block4.x + this->block4.width, this->block4.y + this->block4.height, DARKBROWN);
+        // bottom
+        DrawLine(this->block4.x, this->block4.y + this->block4.height,  this->block4.x + this->block4.width, this->block4.y + this->block4.height, DARKBROWN);
 
-    // right
-    DrawLine(this->block4.x + this->block4.width , this->block4.y , this->block4.x + this->block4.width, this->block4.y + this->block4.height, DARKBROWN);
+        // right
+        DrawLine(this->block4.x + this->block4.width , this->block4.y , this->block4.x + this->block4.width, this->block4.y + this->block4.height, DARKBROWN);
+    }
+    
 
 
 }    
@@ -226,4 +242,22 @@ int OBSTACLE::getBlock3PosY()
 int OBSTACLE::getBlock4PosY()
 {
     return this->block4.y;
+}
+
+
+void OBSTACLE::set_block1_state(bool state)
+{
+    this->block1_active = state;
+}
+void OBSTACLE::set_block2_state(bool state)
+{
+    this->block2_active = state;
+}
+void OBSTACLE::set_block3_state(bool state)
+{
+    this->block3_active = state;
+}
+void OBSTACLE::set_block4_state(bool state)
+{
+    this->block4_active = state;
 }

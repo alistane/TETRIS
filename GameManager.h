@@ -21,6 +21,7 @@ class GameManager
         Vector2 score_txt_loc {450, 200};
         std::vector<Color> obstacle_colors;
         int spawn_limit = 6;
+        int spawned_objects = {}; // this keeps track of how many objects have been spawned.. this is useful in checkfilledrows function.
     public:
         GameManager();
         void initialise_obstacles();

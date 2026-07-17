@@ -11,6 +11,10 @@ class OBSTACLE
         Color blocks_color;
         bool isPlaced = false;
         std::string obj_name;
+
+        bool block1_active = true, block2_active = true,
+         block3_active = true, block4_active = true ;
+
     public:
         OBSTACLE() = default;
         OBSTACLE(std::string obj_name,int posX1, int posX2, int posX3, int posX4, 
@@ -32,6 +36,14 @@ class OBSTACLE
     int getBlock2PosY();
     int getBlock3PosY();
     int getBlock4PosY();
+
+    // arbituary fix -> we are just disabling the rendering of the blocks ill find a better way to handle this
+    
+    void set_block1_state(bool state);
+    void set_block2_state(bool state);
+    void set_block3_state(bool state);
+    void set_block4_state(bool state);
+
 
     std::string give_name(); // gives the name of the object
 

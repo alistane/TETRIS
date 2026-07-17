@@ -33,8 +33,9 @@ bool GameManager::approve()
 }
 
 
-void GameManager::check_filledrows()
+void GameManager::check_filledrows() 
 {
+    InitAudioDevice();
     for(int i = 0; i < this->g1.get_no_of_rows(); i++)
     {
         int counter = {};
@@ -50,11 +51,51 @@ void GameManager::check_filledrows()
                 filled_row = i;
                 std::cout << filled_row << " Row is filled now" << std::endl;
                 this->score += 100;
+
+                for(int i = 0; i < this->spawned_objects; i++)
+                {
+                    // we will check every object's block position relative to the cells position of the filled row.
+
+                    for(int j = 0; j < this->g1.get_no_of_columns(); j++)
+                    {
+                        if(this->obstacles[i].getBlock1PosX() == g1.getColumnPosition(j) && this->obstacles[i].getBlock1PosY() == g1.getRowPosition(filled_row))
+                        {
+                            std::cout << this->obstacles[i].give_name() << "'s block 1  is on the r" << filled_row << "c" << j << std::endl;
+
+                            this->obstacles[i].set_block1_state(false);
+                        }
+
+                        if(this->obstacles[i].getBlock2PosX() == g1.getColumnPosition(j) && this->obstacles[i].getBlock2PosY() == g1.getRowPosition(filled_row))
+                        {
+                            std::cout << this->obstacles[i].give_name() << " 's block 2  is on the r" << filled_row << "c" << j << std::endl;
+
+                            this->obstacles[i].set_block2_state(false);
+                        }
+
+                        if(this->obstacles[i].getBlock3PosX() == g1.getColumnPosition(j) && this->obstacles[i].getBlock3PosY() == g1.getRowPosition(filled_row))
+                        {
+                            std::cout << this->obstacles[i].give_name() << "'s block 3  is on the r" << filled_row << "c" << j << std::endl;
+
+                            this->obstacles[i].set_block3_state(false);
+                        }
+
+                        if(this->obstacles[i].getBlock4PosX() == g1.getColumnPosition(j) && this->obstacles[i].getBlock4PosY() == g1.getRowPosition(filled_row))
+                        {
+                            std::cout << this->obstacles[i].give_name() << "'s block 4  is on the r" << filled_row << "c" << j << std::endl;
+
+                            this->obstacles[i].set_block4_state(false);
+                        }
+                    }
+                }
+
+
                 
                 for(int columns = 0; columns < this->g1.get_no_of_columns(); columns++)
                 {
                     this->g1.setCell(filled_row, columns, 0);
                 }
+
+
             }
 
         }
@@ -218,6 +259,7 @@ void GameManager::spawn( )
         if(this->obstacles[this->current_index].get_placementState())
         {
             this->current_index++;
+            this->spawned_objects++;
         }
     }
     
