@@ -54,10 +54,37 @@ void GRID::setCell(int row, int column, int value)
 }
 
 
+
+
+
 int GRID::getValue(int row, int column) 
 {
     return this->grid_logic[row][column];
 }
+
+int GRID::getValueFromCoordinates(int x, int y)
+{
+    for(int i = 0; i < this->rows; i++)
+    {
+        for(int j = 0; j < this->columns; j++)
+        {
+
+             if(this->visual_recs[i][j].x == x && this->visual_recs[i][j].y == y)
+             {
+                return this->grid_logic[i][j];
+             }
+           
+        }
+    }
+
+    return -1; // if we dont find anything.
+}
+
+
+
+
+
+
 
 
 int GRID::get_no_of_rows()

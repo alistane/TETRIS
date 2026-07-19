@@ -20,7 +20,7 @@ class GameManager
         Font score_font;
         Vector2 score_txt_loc {450, 200};
         std::vector<Color> obstacle_colors;
-        int spawn_limit = 6;
+        int spawn_limit = 12;
         int spawned_objects = {}; // this keeps track of how many objects have been spawned.. this is useful in checkfilledrows function.
     public:
         GameManager();
@@ -32,6 +32,8 @@ class GameManager
         void check_placement();
 
         void check_filledrows(); // checks every row and if it is filled then it will reward the user and it will reset rows and column cells back to 0 and delete the blocks there.
+
+        bool approve_drop(); // this will perform collision detection and when it will return true, the object will drop.
 
 };
 #endif

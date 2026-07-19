@@ -139,7 +139,7 @@ void OBSTACLE::drop_obstacle()
    
     if(this->get_placementState() == false)
     {
-        int lowest = std::max({this->block1.y, this->block2.y, this->block3.y, this->block4.y});
+        int lowest = std::max({this->block1.y, this->block2.y, this->block3.y, this->block4.y}); // find the lowest possible block
 
 
         if(lowest < 990)
@@ -159,7 +159,7 @@ void OBSTACLE::drop_obstacle()
     
 }
 
-void OBSTACLE::movement()
+void OBSTACLE::movement(bool can_move_left, bool can_move_right)
 {
     // std::cout << "Block 1 x : " << this->block1.x << std::endl;
     // std::cout << "Block 2 x : " << this->block2.x << std::endl;
@@ -175,7 +175,7 @@ void OBSTACLE::movement()
         
         
             if(this->block1.x > 50 && this->block2.x >50 
-                && this->block3.x > 50 && this->block4.x > 50 )
+                && this->block3.x > 50 && this->block4.x > 50 && can_move_left )
             {
                 this->block1.x -= 40;
                 this->block2.x -= 40;
@@ -186,7 +186,7 @@ void OBSTACLE::movement()
         }
         else if(IsKeyPressed(KEY_D))
         {
-            if(block1.x < 810 && block2.x < 810  && block3.x < 810 && block4.x < 810)
+            if(block1.x < 810 && block2.x < 810  && block3.x < 810 && block4.x < 810 && can_move_right)
             {
                 this->block1.x += 40;
                 this->block2.x += 40;

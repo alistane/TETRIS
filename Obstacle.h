@@ -22,7 +22,7 @@ class OBSTACLE
     void draw_obstacle(Color color);        
     void set_color(Color color);
     void drop_obstacle();
-    void movement();
+    void movement(bool can_move_left, bool can_move_right);
     bool get_placementState(); // this will tell whether the obstacle has been placed.
     
     std::vector<std::vector<float>> give_position(); // returns the current position of the object
@@ -43,6 +43,8 @@ class OBSTACLE
     void set_block2_state(bool state);
     void set_block3_state(bool state);
     void set_block4_state(bool state);
+
+    
 
 
     std::string give_name(); // gives the name of the object

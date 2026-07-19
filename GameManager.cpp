@@ -3,8 +3,63 @@
 
 void GameManager::Dropping()
 {
-    this->obstacles[this->current_index].drop_obstacle();
+    // if(this->approve_drop())
+    // {
+    //     this->obstacles[this->current_index].drop_obstacle();
 
+    // }
+
+    int block1_posX = this->obstacles[this->current_index].getBlock1PosX();
+    int block1_posY = this->obstacles[this->current_index].getBlock1PosY();
+
+    int block2_posX = this->obstacles[this->current_index].getBlock2PosX();
+    int block2_posY = this->obstacles[this->current_index].getBlock2PosY();
+
+    int block3_posX = this->obstacles[this->current_index].getBlock3PosX();
+    int block3_posY = this->obstacles[this->current_index].getBlock3PosY();
+
+    int block4_posX = this->obstacles[this->current_index].getBlock4PosX();
+    int block4_posY = this->obstacles[this->current_index].getBlock4PosY();
+
+
+    std::cout << this->obstacles[this->current_index].give_name() << " Block 1 free bottom block is : " <<this->g1.getValueFromCoordinates(block1_posX, block1_posY + 40) << std::endl;
+
+    std::cout << this->obstacles[this->current_index].give_name() << " Block 2 free bottom block is : " <<this->g1.getValueFromCoordinates(block2_posX, block2_posY - 40) << std::endl;
+
+    std::cout << this->obstacles[this->current_index].give_name() << " Block 3 free bottom block is : " <<this->g1.getValueFromCoordinates(block3_posX, block3_posY - 40) << std::endl;
+
+    std::cout << this->obstacles[this->current_index].give_name() << " Block 4 free bottom block is : " <<this->g1.getValueFromCoordinates(block4_posX, block4_posY - 40) << std::endl;
+
+           
+
+
+    
+
+    if(this->g1.getValueFromCoordinates(block1_posX ,block1_posY + 40 ) != 1 && this->g1.getValueFromCoordinates(block2_posX ,block2_posY + 40 ) != 1
+        && this->g1.getValueFromCoordinates(block3_posX , block3_posY + 40 ) != 1 && this->g1.getValueFromCoordinates(block4_posX ,block4_posY + 40 ) != 1 )
+    {
+        this->obstacles[this->current_index].drop_obstacle();
+
+    }
+
+    
+
+
+}
+
+bool GameManager::approve_drop()
+{
+    bool approve;
+
+
+
+    
+
+    
+
+
+
+    return approve;
 }
 
 
@@ -18,7 +73,37 @@ void GameManager::Draw()
         this->obstacles[i].draw_obstacle(this->obstacle_colors[i]);
 
     }
-    this->obstacles[this->current_index].movement();
+
+    int block1_posX = this->obstacles[this->current_index].getBlock1PosX();
+    int block1_posY = this->obstacles[this->current_index].getBlock1PosY();
+
+    int block2_posX = this->obstacles[this->current_index].getBlock2PosX();
+    int block2_posY = this->obstacles[this->current_index].getBlock2PosY();
+
+    int block3_posX = this->obstacles[this->current_index].getBlock3PosX();
+    int block3_posY = this->obstacles[this->current_index].getBlock3PosY();
+
+    int block4_posX = this->obstacles[this->current_index].getBlock4PosX();
+    int block4_posY = this->obstacles[this->current_index].getBlock4PosY();
+
+    bool can_move_left = false, can_move_right = false;
+
+    // blocks x right comparison
+    if(this->g1.getValueFromCoordinates(block1_posX + 40,block1_posY ) != 1 && this->g1.getValueFromCoordinates(block2_posX + 40,block2_posY ) != 1 && this->g1.getValueFromCoordinates(block3_posX + 40,block3_posY ) != 1 &&
+        this->g1.getValueFromCoordinates(block4_posX + 40,block4_posY ) != 1)
+    {
+        can_move_right = true;
+    }
+
+    // blocks x left comparison
+    if(this->g1.getValueFromCoordinates(block1_posX - 40,block1_posY ) != 1 && this->g1.getValueFromCoordinates(block2_posX - 40,block2_posY ) != 1 && this->g1.getValueFromCoordinates(block3_posX - 40, block3_posY ) != 1
+     && this->g1.getValueFromCoordinates(block4_posX - 40, block4_posY ) != 1 )
+    {
+        can_move_left = true;
+    }
+
+
+    this->obstacles[this->current_index].movement(can_move_left, can_move_right);
     DrawTextEx(this->score_font, TextFormat("Score : %d" , this->score), score_txt_loc , 30, 2, WHITE);
 
     // this->ob1.draw_obstacle(ORANGE);
@@ -33,9 +118,9 @@ bool GameManager::approve()
 }
 
 
-void GameManager::check_filledrows() 
+void GameManager::check_filledrows() // this checks if a row is filled and then rewards the user with score points.
 {
-    InitAudioDevice();
+    // InitAudioDevice(); // play some song here dude.
     for(int i = 0; i < this->g1.get_no_of_rows(); i++)
     {
         int counter = {};
@@ -243,12 +328,30 @@ GameManager::GameManager()
 void GameManager::initialise_obstacles()
 {
     // 710 say 740, 780, 820
-    this->obstacles.push_back(OBSTACLE ("IDK",50,90,130,170,150,150,150,150,40,40));
-    this->obstacles.push_back(OBSTACLE ("I shape", 50,50,50,50,150,190,230,270,40,40)); // i shape
-    this->obstacles.push_back(OBSTACLE ("T shape", 50,90,130,90,150,150,150,190,40,40)); // T shape
-    this->obstacles.push_back(OBSTACLE ("O shape", 50,90,50,90,150,150,190,190,40,40)); // o shape
-    this->obstacles.push_back(OBSTACLE ("S shape", 50,90,90,130,190,150,190,150,40,40)); // s shape
-    this->obstacles.push_back(OBSTACLE ("L shape", 50,50,50,90,150,190,230,230,40,40));
+    // this->obstacles.push_back(OBSTACLE ("IDK",50,90,130,170,150,150,150,150,40,40));
+    // this->obstacles.push_back(OBSTACLE ("I shape", 50,50,50,50,150,190,230,270,40,40)); // i shape
+    // this->obstacles.push_back(OBSTACLE ("T shape", 50,90,130,90,150,150,150,190,40,40)); // T shape
+    // this->obstacles.push_back(OBSTACLE ("O shape", 50,90,50,90,150,150,190,190,40,40)); // o shape
+    // this->obstacles.push_back(OBSTACLE ("S shape", 50,90,90,130,190,150,190,150,40,40)); // s shape
+    // this->obstacles.push_back(OBSTACLE ("L shape", 50,50,50,90,150,190,230,230,40,40));
+
+
+    // test objects
+    this->obstacles.push_back(OBSTACLE ("1st shape",50,90,130,170,270,270,270,270,40,40));
+    this->obstacles.push_back(OBSTACLE ("2nd shape",50,90,130,170,270,270,270,270,40,40));
+    this->obstacles.push_back(OBSTACLE ("3rd shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("4th shape", 50,50,50,50,270,310,350,390,40,40)); 
+
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+
+    
 }
 
 void GameManager::spawn( )

@@ -24,7 +24,7 @@ class GRID
 
         // sets the individual blocks in the grid to filled or empty, 0 means empty , 1 means filled.
         void setCell(int row, int column, int value);
-
+        int getValueFromCoordinates(int x, int y);
         int get_no_of_rows();
         int get_no_of_columns();
 
