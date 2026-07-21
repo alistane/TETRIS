@@ -27,6 +27,7 @@ class GRID
         int getValueFromCoordinates(int x, int y);
         int get_no_of_rows();
         int get_no_of_columns();
+        void setValueAtCoordinates(int x, int y, int value);
 
 };
 #endif

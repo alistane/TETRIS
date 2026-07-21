@@ -80,6 +80,25 @@ int GRID::getValueFromCoordinates(int x, int y)
     return -1; // if we dont find anything.
 }
 
+void GRID::setValueAtCoordinates(int x, int y, int value)
+{
+
+    for(int i = 0; i < this->rows; i++)
+    {
+        for(int j = 0; j < this->columns; j++)
+        {
+
+             if(this->visual_recs[i][j].x == x && this->visual_recs[i][j].y == y)
+             {
+                this->grid_logic[i][j] = value;
+             }
+             
+           
+        }
+    }
+
+}
+
 
 
 

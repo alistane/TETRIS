@@ -57,6 +57,36 @@ std::vector<std::vector<float>> OBSTACLE::give_position()
 
 }
 
+void OBSTACLE::move_block(int x, int y) // moves one vertical.
+{
+    if(block1.x == x && block1.y == y)
+    {
+        block1.y+= 40;
+    }
+    else if(block2.x == x && block2.y == y)
+    {
+        block2.y+= 40;
+
+    }
+    else if(block3.x == x && block3.y == y)
+    {
+        block3.y+= 40;
+
+    }
+    else if(block4.x == x && block4.y == y)
+    {
+        block4.y+= 40;
+
+    }
+    else
+    {
+        std::cout << "Couldn't find any block of this object at given position." << std::endl;
+    }
+
+
+}
+
+
 
 void OBSTACLE::draw_obstacle(Color col)
 {
@@ -244,6 +274,17 @@ int OBSTACLE::getBlock4PosY()
     return this->block4.y;
 }
 
+void OBSTACLE::add_to_y()
+{
+    this->block1.y += 40;
+    this->block2.y += 40;
+    this->block3.y += 40;
+    this->block4.y += 40;
+    
+}
+
+
+
 
 void OBSTACLE::set_block1_state(bool state)
 {
@@ -260,4 +301,25 @@ void OBSTACLE::set_block3_state(bool state)
 void OBSTACLE::set_block4_state(bool state)
 {
     this->block4_active = state;
+}
+
+
+void OBSTACLE::add_to_block2()
+{
+    block2.y += 40;
+
+}
+void OBSTACLE::add_to_block3()
+{
+    block3.y += 40;
+
+}
+void OBSTACLE::add_to_block4()
+{
+    block4.y += 40;
+
+}
+void OBSTACLE::add_to_block1()
+{
+    block1.y += 40;
 }

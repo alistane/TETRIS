@@ -9,12 +9,12 @@ void GameManager::Dropping()
 
     // }
 
-    int block1_posX = this->obstacles[this->current_index].getBlock1PosX();
     int block1_posY = this->obstacles[this->current_index].getBlock1PosY();
-
-    int block2_posX = this->obstacles[this->current_index].getBlock2PosX();
+    int block1_posX = this->obstacles[this->current_index].getBlock1PosX();
+    
     int block2_posY = this->obstacles[this->current_index].getBlock2PosY();
-
+    int block2_posX = this->obstacles[this->current_index].getBlock2PosX();
+    
     int block3_posX = this->obstacles[this->current_index].getBlock3PosX();
     int block3_posY = this->obstacles[this->current_index].getBlock3PosY();
 
@@ -22,13 +22,13 @@ void GameManager::Dropping()
     int block4_posY = this->obstacles[this->current_index].getBlock4PosY();
 
 
-    std::cout << this->obstacles[this->current_index].give_name() << " Block 1 free bottom block is : " <<this->g1.getValueFromCoordinates(block1_posX, block1_posY + 40) << std::endl;
+    // std::cout << this->obstacles[this->current_index].give_name() << " Block 1 free bottom block is : " <<this->g1.getValueFromCoordinates(block1_posX, block1_posY + 40) << std::endl;
 
-    std::cout << this->obstacles[this->current_index].give_name() << " Block 2 free bottom block is : " <<this->g1.getValueFromCoordinates(block2_posX, block2_posY - 40) << std::endl;
+    // std::cout << this->obstacles[this->current_index].give_name() << " Block 2 free bottom block is : " <<this->g1.getValueFromCoordinates(block2_posX, block2_posY - 40) << std::endl;
 
-    std::cout << this->obstacles[this->current_index].give_name() << " Block 3 free bottom block is : " <<this->g1.getValueFromCoordinates(block3_posX, block3_posY - 40) << std::endl;
+    // std::cout << this->obstacles[this->current_index].give_name() << " Block 3 free bottom block is : " <<this->g1.getValueFromCoordinates(block3_posX, block3_posY - 40) << std::endl;
 
-    std::cout << this->obstacles[this->current_index].give_name() << " Block 4 free bottom block is : " <<this->g1.getValueFromCoordinates(block4_posX, block4_posY - 40) << std::endl;
+    // std::cout << this->obstacles[this->current_index].give_name() << " Block 4 free bottom block is : " <<this->g1.getValueFromCoordinates(block4_posX, block4_posY - 40) << std::endl;
 
            
 
@@ -47,20 +47,147 @@ void GameManager::Dropping()
 
 }
 
-bool GameManager::approve_drop()
+
+void GameManager::arrange_blocks()
 {
-    bool approve;
-
-
-
+    int initial_block1_posX = {}, initial_block2_posX  =  {} , initial_block3_posX  =  {} , initial_block4_posX  =  {};
     
+    int initial_block1_posY = {}, initial_block2_posY  =  {} , initial_block3_posY  =  {} , initial_block4_posY  =  {};
 
-    
+    int initial_lowest = {} , y_distance = {}, free_gap = {};
 
 
 
-    return approve;
+    int block1_posX = {} , block2_posX = {}, block3_posX = {} , block4_posX = {};
+        int block1_y = {},block2_y = {} ,block3_y = {},block4_y = {};
+    int lowest = {};
+
+    for(int i = 0; i < this->spawned_objects; i++)
+    {
+        // values before getting moved
+        initial_block1_posX = this->obstacles[i].getBlock1PosX();
+        initial_block1_posY = this->obstacles[i].getBlock1PosY();
+        
+        initial_block2_posX = this->obstacles[i].getBlock2PosX();
+        initial_block2_posY = this->obstacles[i].getBlock2PosY();
+
+        initial_block3_posX = this->obstacles[i].getBlock3PosX();
+        initial_block3_posY = this->obstacles[i].getBlock3PosY();
+
+        initial_block4_posX = this->obstacles[i].getBlock4PosX();
+        initial_block4_posY = this->obstacles[i].getBlock4PosY();
+
+        initial_lowest = std::max({initial_block1_posY, initial_block2_posY, initial_block3_posY, initial_block4_posY});
+
+        
+        y_distance = (990 - initial_lowest) + 40; //  
+
+        free_gap = (y_distance/40)  ; // kitnay blocks ka gap hae.
+       
+        std::cout << this->obstacles[i].give_name() << " has a y_distance of " << y_distance << " blocks" << std::endl;
+
+        std::cout << this->obstacles[i].give_name() << " has a gap of " << free_gap << " blocks" << std::endl;
+        
+        for(free_gap; free_gap > 0; free_gap--)
+        {
+            block1_posX = this->obstacles[i].getBlock1PosX();
+            block1_y =  this->obstacles[i].getBlock1PosY();
+            
+            block2_posX = this->obstacles[i].getBlock2PosX();
+            block2_y = this->obstacles[i].getBlock2PosY();
+
+            block3_posX = this->obstacles[i].getBlock3PosX();
+            block3_y = this->obstacles[i].getBlock3PosY();
+            
+            block4_posX = this->obstacles[i].getBlock4PosX();
+            block4_y = this->obstacles[i].getBlock4PosY();   
+
+
+            if(this->g1.getValueFromCoordinates(block1_posX,block1_y + 40) != 1)
+            {
+                this->obstacles[i].add_to_block1();
+                this->g1.setValueAtCoordinates(block1_posX, block1_y - 40, 0);
+                std::cout << "Block 1 can move " << std::endl;
+            }
+
+             if(this->g1.getValueFromCoordinates(block2_posX,block2_y + 40) != 1)
+            {
+                this->obstacles[i].add_to_block2();
+                this->g1.setValueAtCoordinates(block2_posX, block2_y - 40, 0);
+                std::cout << "Block 2 can move " << std::endl;
+                // std::cout << "block 2 moved and its previous position is zeroed." << this->g1.getValueFromCoordinates(block)
+
+
+            }
+             if(this->g1.getValueFromCoordinates(block3_posX,block3_y + 40) != 1)
+            {
+                this->obstacles[i].add_to_block3();
+                this->g1.setValueAtCoordinates(block3_posX, block3_y - 40, 0);
+                std::cout << "Block 3 can move " << std::endl;
+
+            }
+             if(this->g1.getValueFromCoordinates(block4_posX,block4_y + 40) != 1)
+            {
+                this->obstacles[i].add_to_block4();
+                this->g1.setValueAtCoordinates(block4_posX, block4_y - 40, 0);
+                std::cout << "Block 4 can move " << std::endl;
+
+            }
+
+
+            // if(block1_y > block2_y && block1_y > block3_y && block1_y > block4_y )
+            // {
+            //     // block 1 is the lowest.
+            //     this->obstacles[i].add_to_block1();
+            // }
+
+            // if(block2_y > block1_y && block2_y > block3_y && block2_y > block4_y )
+            // {
+            //     // block 2 is the lowest.
+            //     this->obstacles[i].add_to_block2();
+
+            // }
+
+            // if(block3_y > block1_y && block3_y > block2_y && block3_y > block4_y)
+            // {
+            //     // block 3 is the lowest
+            //     this->obstacles[i].add_to_block3();
+
+            // }
+
+            // if(block4_y > block1_y && block4_y > block3_y && block4_y > block2_y )
+            // {
+            //     // block 4 is the lowest.
+            //     this->obstacles[i].add_to_block4();
+
+            // }
+
+
+
+
+            // // // have separate values here for block 1, 2, 3, 4 for comparison.
+            // // if(this->g1.getValueFromCoordinates(block1_posX ,block1_y + 40 ) != 1 && this->g1.getValueFromCoordinates(block2_posX ,block2_y + 40 ) != 1
+            // // && this->g1.getValueFromCoordinates(block3_posX , block3_y + 40 ) != 1 && this->g1.getValueFromCoordinates(block4_posX ,block4_y + 40 ) != 1 )
+            // // {
+            // //     this->obstacles[i].add_to_y();
+
+            // //         // perform some kind of recalculation here.
+            // // }
+            // else
+            // {
+            //         break;
+            // }
+        }
+        
+
+
+        
+    }
 }
+
+
+
+
 
 
 void GameManager::Draw()
@@ -137,6 +264,7 @@ void GameManager::check_filledrows() // this checks if a row is filled and then 
                 std::cout << filled_row << " Row is filled now" << std::endl;
                 this->score += 100;
 
+                // clearing the row from objects
                 for(int i = 0; i < this->spawned_objects; i++)
                 {
                     // we will check every object's block position relative to the cells position of the filled row.
@@ -174,11 +302,13 @@ void GameManager::check_filledrows() // this checks if a row is filled and then 
                 }
 
 
-                
+                    
                 for(int columns = 0; columns < this->g1.get_no_of_columns(); columns++)
                 {
                     this->g1.setCell(filled_row, columns, 0);
                 }
+
+                this->arrange_blocks();
 
 
             }
@@ -321,6 +451,15 @@ GameManager::GameManager()
     this->obstacle_colors.push_back(YELLOW);
     this->obstacle_colors.push_back(PURPLE);
     this->obstacle_colors.push_back(BLUE);
+    this->obstacle_colors.push_back(ORANGE);
+    this->obstacle_colors.push_back(RED);
+    this->obstacle_colors.push_back(GREEN);
+    this->obstacle_colors.push_back(YELLOW);
+    this->obstacle_colors.push_back(PURPLE);
+    this->obstacle_colors.push_back(BLUE);
+    this->obstacle_colors.push_back(PURPLE);
+    this->obstacle_colors.push_back(BLUE);
+
 
 
 }
@@ -343,13 +482,15 @@ void GameManager::initialise_obstacles()
     this->obstacles.push_back(OBSTACLE ("4th shape", 50,50,50,50,270,310,350,390,40,40)); 
 
     this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
-    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
-    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
-    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
-    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
-    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
-    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
-    this->obstacles.push_back(OBSTACLE ("5th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("6th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("7th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("8th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("9th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("10th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("11th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("12th shape", 50,50,50,50,270,310,350,390,40,40)); 
+    this->obstacles.push_back(OBSTACLE ("2nd shape",50,90,130,170,270,270,270,270,40,40));
+    this->obstacles.push_back(OBSTACLE ("2nd shape",50,90,130,170,270,270,270,270,40,40));
 
     
 }

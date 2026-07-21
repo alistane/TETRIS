@@ -7,6 +7,9 @@
 #include <vector>
 #include <string>
 #include <random>
+#include <algorithm>
+
+
 class GameManager
 {
     private:
@@ -30,10 +33,9 @@ class GameManager
         void Dropping();
         bool approve(); // this will send a signal that the current object has been placed successfully. TRUE -> Placed , FALSE -> STILL DROPPING
         void check_placement();
-
+        void arrange_blocks(); // this is called whenever a row is filled and it arranges the objects in order.
         void check_filledrows(); // checks every row and if it is filled then it will reward the user and it will reset rows and column cells back to 0 and delete the blocks there.
 
-        bool approve_drop(); // this will perform collision detection and when it will return true, the object will drop.
 
 };
 #endif

@@ -44,7 +44,12 @@ class OBSTACLE
     void set_block3_state(bool state);
     void set_block4_state(bool state);
 
-    
+    void add_to_y(); // this will add value 40 to current position, this function is used in arrange function.s
+    void move_block(int x, int y); // moves one vertical.
+    void add_to_block1();
+    void add_to_block2();
+    void add_to_block3();
+    void add_to_block4();
 
 
     std::string give_name(); // gives the name of the object
