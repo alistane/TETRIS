@@ -94,8 +94,10 @@ void OBSTACLE::draw_obstacle(Color col)
 
     if(this->block1_active)
     {
+
         DrawRectangleRec(this->block1, this->blocks_color);
         // DrawRectangleLinesEx(this->block1, 1, BLACK);
+        DrawText("1",this->block1.x + 10 ,this->block1.y, 40, WHITE);
         DrawLine(this->block1.x, this->block1.y,  this->block1.x + this->block1.width, this->block1.y, WHITE); // top
 
         // left
@@ -113,6 +115,7 @@ void OBSTACLE::draw_obstacle(Color col)
     {
         // block 2
         DrawRectangleRec(this->block2, this->blocks_color);
+        DrawText("2",this->block2.x + 10 ,this->block2.y, 40, WHITE);
 
         DrawLine(this->block2.x, this->block2.y,  this->block2.x + this->block2.width, this->block2.y, WHITE); // top
 
@@ -131,6 +134,8 @@ void OBSTACLE::draw_obstacle(Color col)
     {
         // block 3
         DrawRectangleRec(this->block3, this->blocks_color);
+        DrawText("3",this->block3.x + 10 ,this->block3.y, 40, WHITE);
+
         DrawLine(this->block3.x, this->block3.y,  this->block3.x + this->block3.width, this->block3.y, WHITE); // top
 
         // left
@@ -148,6 +153,8 @@ void OBSTACLE::draw_obstacle(Color col)
     {
         // block 4
         DrawRectangleRec(this->block4, this->blocks_color);
+        DrawText("4",this->block4.x + 10 ,this->block4.y, 40, WHITE);
+
         DrawLine(this->block4.x, this->block4.y,  this->block4.x + this->block4.width, this->block4.y, WHITE); // top
 
         // left
@@ -322,4 +329,23 @@ void OBSTACLE::add_to_block4()
 void OBSTACLE::add_to_block1()
 {
     block1.y += 40;
+}
+
+
+
+bool OBSTACLE::get_block1_state()
+{
+    return this->block1_active;
+}
+bool OBSTACLE::get_block2_state()
+{
+    return this->block2_active;
+}
+bool OBSTACLE::get_block3_state()
+{
+    return this->block3_active;
+}
+bool OBSTACLE::get_block4_state()
+{
+    return this->block4_active;
 }

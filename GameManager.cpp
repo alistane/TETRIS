@@ -82,7 +82,7 @@ void GameManager::arrange_blocks()
         
         y_distance = (990 - initial_lowest) + 40; //  
 
-        free_gap = (y_distance/40)  ; // kitnay blocks ka gap hae.
+        free_gap = (y_distance/40) * 2  ; // kitnay blocks ka gap hae.
        
         std::cout << this->obstacles[i].give_name() << " has a y_distance of " << y_distance << " blocks" << std::endl;
 
@@ -103,34 +103,54 @@ void GameManager::arrange_blocks()
             block4_y = this->obstacles[i].getBlock4PosY();   
 
 
-            if(this->g1.getValueFromCoordinates(block1_posX,block1_y + 40) != 1)
+            if(this->g1.getValueFromCoordinates(block1_posX,block1_y + 40) != 1 && this->obstacles[i].get_block1_state() && this->obstacles[i].getBlock1PosY() < 990)
             {
+                std::cout << "Block1 state : " << this->obstacles[i].get_block1_state() << std::endl;
                 this->obstacles[i].add_to_block1();
-                this->g1.setValueAtCoordinates(block1_posX, block1_y - 40, 0);
+                this->g1.setValueAtCoordinates(block1_posX, block1_y, 0);
+                this->g1.setValueAtCoordinates(this->obstacles[i].getBlock1PosX(), this->obstacles[i].getBlock1PosY(), 1);
+
                 std::cout << "Block 1 can move " << std::endl;
+                std::cout << "Block 1 final position (after moving): " << block1_y << std::endl;
             }
 
-             if(this->g1.getValueFromCoordinates(block2_posX,block2_y + 40) != 1)
+            if(this->g1.getValueFromCoordinates(block2_posX,block2_y + 40) != 1 && this->obstacles[i].get_block2_state() 
+                && this->obstacles[i].getBlock2PosY() < 990)
             {
+                std::cout << "Block2 state : " << this->obstacles[i].get_block2_state() << std::endl;
+
                 this->obstacles[i].add_to_block2();
-                this->g1.setValueAtCoordinates(block2_posX, block2_y - 40, 0);
+                this->g1.setValueAtCoordinates(block2_posX, block2_y , 0);
                 std::cout << "Block 2 can move " << std::endl;
+                this->g1.setValueAtCoordinates(this->obstacles[i].getBlock2PosX(), this->obstacles[i].getBlock2PosY(), 1);
+
                 // std::cout << "block 2 moved and its previous position is zeroed." << this->g1.getValueFromCoordinates(block)
+                std::cout << "Block 2 final position (after moving): " << block2_y << std::endl;
+
 
 
             }
-             if(this->g1.getValueFromCoordinates(block3_posX,block3_y + 40) != 1)
+            if(this->g1.getValueFromCoordinates(block3_posX,block3_y + 40) != 1 && this->obstacles[i].get_block3_state() && this->obstacles[i].getBlock3PosY() < 990)
             {
+                std::cout << "Block3 state : " << this->obstacles[i].get_block3_state() << std::endl;
+
                 this->obstacles[i].add_to_block3();
-                this->g1.setValueAtCoordinates(block3_posX, block3_y - 40, 0);
+                this->g1.setValueAtCoordinates(block3_posX, block3_y , 0);
                 std::cout << "Block 3 can move " << std::endl;
+                this->g1.setValueAtCoordinates(this->obstacles[i].getBlock3PosX(), this->obstacles[i].getBlock3PosY(), 1);
+                std::cout << "Block 3 final position (after moving): " << block3_y << std::endl;
 
             }
-             if(this->g1.getValueFromCoordinates(block4_posX,block4_y + 40) != 1)
+            if(this->g1.getValueFromCoordinates(block4_posX,block4_y + 40) != 1 && this->obstacles[i].get_block4_state() && this->obstacles[i].getBlock4PosY() < 990)
             {
+                std::cout << "Block4 state : " << this->obstacles[i].get_block4_state() << std::endl;
+
                 this->obstacles[i].add_to_block4();
-                this->g1.setValueAtCoordinates(block4_posX, block4_y - 40, 0);
+                this->g1.setValueAtCoordinates(block4_posX, block4_y , 0);
                 std::cout << "Block 4 can move " << std::endl;
+                this->g1.setValueAtCoordinates(this->obstacles[i].getBlock4PosX(), this->obstacles[i].getBlock4PosY(), 1);
+
+                std::cout << "Block 4 final position (after moving): " << block4_y << std::endl;
 
             }
 
@@ -332,66 +352,66 @@ void GameManager::check_placement()
     // now we will run a for loop and ask the grid to give us coordinates of visual rects and if the position of object blocks is equal to visual rect, then we will turn grid_logic variable grid cells equal to 1.
 
 
-    // COMMENT THIS CODE IN THE FINAL VERSION
-    std::cout << this->obstacles[this->current_index].give_name() << " placed at the following coordinates : " << std::endl;
+    // // COMMENT THIS CODE IN THE FINAL VERSION
+    // std::cout << this->obstacles[this->current_index].give_name() << " placed at the following coordinates : " << std::endl;
 
-    for(int i = 0; i < 4; i++) // i represents blocks
-    {
-        for(int j = 0; j < 2; j++) // j 0 represents x , j 1 y
-        {
-            if(i == 0)
-            {
-                if(j == 0)
-                {
-                    std::cout << "Block 1 (x) : " << final_placement[i][j] << std::endl;
-                }
-                else 
-                {
-                    std::cout << "Block 1 (y) : " << final_placement[i][j] << std::endl;
-                }
-            }
+    // for(int i = 0; i < 4; i++) // i represents blocks
+    // {
+    //     for(int j = 0; j < 2; j++) // j 0 represents x , j 1 y
+    //     {
+    //         if(i == 0)
+    //         {
+    //             if(j == 0)
+    //             {
+    //                 std::cout << "Block 1 (x) : " << final_placement[i][j] << std::endl;
+    //             }
+    //             else 
+    //             {
+    //                 std::cout << "Block 1 (y) : " << final_placement[i][j] << std::endl;
+    //             }
+    //         }
 
-            if(i == 1)
-            {
-                if(j == 0)
-                {
-                    std::cout << "Block 2 (x) : " << final_placement[i][j] << std::endl;
-                }
-                else 
-                {
-                    std::cout << "Block 2 (y) : " << final_placement[i][j] << std::endl;
-                }
-            }
+    //         if(i == 1)
+    //         {
+    //             if(j == 0)
+    //             {
+    //                 std::cout << "Block 2 (x) : " << final_placement[i][j] << std::endl;
+    //             }
+    //             else 
+    //             {
+    //                 std::cout << "Block 2 (y) : " << final_placement[i][j] << std::endl;
+    //             }
+    //         }
 
-            if(i == 2)
-            {
-                if(j == 0)
-                {
-                    std::cout << "Block 3 (x) : " << final_placement[i][j] << std::endl;
-                }
-                else 
-                {
-                    std::cout << "Block 3 (y) : " << final_placement[i][j] << std::endl;
-                }
-            }
+    //         if(i == 2)
+    //         {
+    //             if(j == 0)
+    //             {
+    //                 std::cout << "Block 3 (x) : " << final_placement[i][j] << std::endl;
+    //             }
+    //             else 
+    //             {
+    //                 std::cout << "Block 3 (y) : " << final_placement[i][j] << std::endl;
+    //             }
+    //         }
 
             
-            if(i == 3)
-            {
-                if(j == 0)
-                {
-                    std::cout << "Block 4 (x) : " << final_placement[i][j] << std::endl;
-                }
-                else 
-                {
-                    std::cout << "Block 4 (y) : " << final_placement[i][j] << std::endl;
-                }
-            }
+    //         if(i == 3)
+    //         {
+    //             if(j == 0)
+    //             {
+    //                 std::cout << "Block 4 (x) : " << final_placement[i][j] << std::endl;
+    //             }
+    //             else 
+    //             {
+    //                 std::cout << "Block 4 (y) : " << final_placement[i][j] << std::endl;
+    //             }
+    //         }
 
 
 
-        }
-    } // all debug stuff
+    //     }
+    // } // all debug stuff
 
 
     //now checking the placement 
@@ -426,15 +446,15 @@ void GameManager::check_placement()
         }
     }
 
-    // now checking the values ..
-    for(int i = 0 ; i < 20 ; i++)
-    {
-        for(int j = 0 ; j < 10 ; j++)
-        {
-            std::cout << "Row " << i+1 << "\n" << "Column : " << j+1 << "\n" 
-            << "Value : " << this->g1.getValue(i, j) << std::endl;
-        }
-    }
+    // DEBUG ONLY : // now checking the values ..
+    // for(int i = 0 ; i < 20 ; i++)
+    // {
+    //     for(int j = 0 ; j < 10 ; j++)
+    //     {
+    //         std::cout << "Row " << i+1 << "\n" << "Column : " << j+1 << "\n" 
+    //         << "Value : " << this->g1.getValue(i, j) << std::endl;
+    //     }
+    // }
 
     
 
@@ -445,20 +465,20 @@ GameManager::GameManager()
 {
     this->initialise_obstacles();
     this->score_font = LoadFont("UI FONT 1.TTF");
-    this->obstacle_colors.push_back(ORANGE);
-    this->obstacle_colors.push_back(RED);
-    this->obstacle_colors.push_back(GREEN);
-    this->obstacle_colors.push_back(YELLOW);
-    this->obstacle_colors.push_back(PURPLE);
-    this->obstacle_colors.push_back(BLUE);
-    this->obstacle_colors.push_back(ORANGE);
-    this->obstacle_colors.push_back(RED);
-    this->obstacle_colors.push_back(GREEN);
-    this->obstacle_colors.push_back(YELLOW);
-    this->obstacle_colors.push_back(PURPLE);
-    this->obstacle_colors.push_back(BLUE);
-    this->obstacle_colors.push_back(PURPLE);
-    this->obstacle_colors.push_back(BLUE);
+    this->obstacle_colors.push_back(Color{255, 120, 0, 128}); // orange
+    this->obstacle_colors.push_back(Color{255, 0, 0, 128}); // red 
+    this->obstacle_colors.push_back(Color{120, 255, 0, 128});// green
+    this->obstacle_colors.push_back(Color{255, 120, 0, 128}); // yellow
+    this->obstacle_colors.push_back(Color{247, 255, 0, 128});
+    this->obstacle_colors.push_back(Color{0, 162, 255, 128});
+    this->obstacle_colors.push_back(Color{255, 120, 0, 128});
+    this->obstacle_colors.push_back(Color{255, 0, 0, 128});
+    this->obstacle_colors.push_back(Color{120, 255, 0, 128});
+    this->obstacle_colors.push_back(Color{255, 120, 0, 128}); // yellow
+    this->obstacle_colors.push_back(Color{247, 255, 0, 128});
+    this->obstacle_colors.push_back(Color{0, 162, 255, 128});
+    this->obstacle_colors.push_back(Color{247, 255, 0, 128});
+    this->obstacle_colors.push_back(Color{0, 162, 255, 128});
 
 
 

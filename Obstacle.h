@@ -39,6 +39,12 @@ class OBSTACLE
 
     // arbituary fix -> we are just disabling the rendering of the blocks ill find a better way to handle this
     
+    bool get_block1_state();
+    bool get_block2_state();
+    bool get_block3_state();
+    bool get_block4_state();
+
+
     void set_block1_state(bool state);
     void set_block2_state(bool state);
     void set_block3_state(bool state);
